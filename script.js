@@ -17,20 +17,26 @@ convertButton.addEventListener("click", () => {
   const userInput = Number(formData.get("input"));
   const converTo = formData.get("convert-to");
 
-  if (userInput) {
-    result.style.color = "inherit";
-    if (converTo === "fahrenheit") {
-      result.value = `${userInput} ℃ is ${convertCelsiusToFahrenheit(
-        userInput
-      )} °F`;
-    }
-    if (converTo === "celsius") {
-      result.value = `${userInput} °F is ${convertFahrenheitToCelsuis(
-        userInput
-      )} ℃`;
-    }
-  } else {
-    result.value = "Please enter a number to convert !";
+  if (!userInput) {
     result.style.color = "red";
+    result.value = "Please enter a number to convert !";
+    return;
+  }
+  if (!converTo) {
+    result.style.color = "red";
+    result.value = "Select unit to convert to";
+    return;
+  }
+
+  result.style.color = "inherit";
+  if (converTo === "fahrenheit") {
+    result.value = `${userInput} ℃ is ${convertCelsiusToFahrenheit(
+      userInput
+    )} °F`;
+  }
+  if (converTo === "celsius") {
+    result.value = `${userInput} °F is ${convertFahrenheitToCelsuis(
+      userInput
+    )} ℃`;
   }
 });
