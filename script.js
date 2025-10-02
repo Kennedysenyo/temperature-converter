@@ -11,6 +11,7 @@ const convertFahrenheitToCelsuis = (fahrenheit) => {
 const form = document.getElementById("temp-converter-frm");
 const convertButton = document.querySelector(".convert-btn");
 const result = document.querySelector(".result");
+const selectElement = document.querySelector("select[name='convert-to']");
 
 convertButton.addEventListener("click", () => {
   const formData = new FormData(form);
@@ -24,11 +25,14 @@ convertButton.addEventListener("click", () => {
   }
   if (!converTo) {
     result.style.color = "red";
+    selectElement.style.borderColor = "red";
     result.value = "Select unit to convert to";
+
     return;
   }
 
   result.style.color = "inherit";
+  selectElement.style.borderColor = "inherit";
   if (converTo === "fahrenheit") {
     result.value = `${userInput} ℃ is ${convertCelsiusToFahrenheit(
       userInput
